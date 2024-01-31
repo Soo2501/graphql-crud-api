@@ -6,30 +6,30 @@ from app.models import Contact, Profile
 class ContactType(DjangoObjectType):
     class Meta:
         model = Contact
-        field = ("id", "name", "phone_number")
+        field = ("id", "name", "phoneNumber")
 
 class ProfileType(DjangoObjectType):
     class Meta:
         model = Profile
-        fields = ("id", "name", "phone_number", "address", "sex")
+        fields = ("id", "name", "phoneNumber", "address", "sex")
 
 class Query(graphene.ObjectType):
-    list_contact = graphene.List(ContactType)
-    read_contact = graphene.Field(ContactType, id=graphene.Int())
+    listContact = graphene.List(ContactType)
+    readContact = graphene.Field(ContactType, id=graphene.Int())
     
-    list_profile = graphene.List(ProfileType)
-    read_profile = graphene.Field(ProfileType, id=graphene.Int())
+    listProfile = graphene.List(ProfileType)
+    readProfile = graphene.Field(ProfileType, id=graphene.Int())
 
-    def resolve_list_contact(root, info):
+    def resolve_listContact(root, info):
         return Contact.objects.all()
     
-    def resolve_read_contact(root, info, id):
+    def resolve_readContact(root, info, id):
         return Contact.objects.get(id=id)
 
-    def resolve_list_profile(root, info):
+    def resolve_listProfile(root, info):
         return Profile.objects.all()
   
-    def resolve_read_profile(root, info, id):
+    def resolve_readProfile(root, info, id):
         return Profile.objects.get(id=id)
         
 # schema = graphene.Schema(query=Query)

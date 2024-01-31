@@ -4,7 +4,7 @@ from django.db import models
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=200)
+    phoneNumber = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name + " id: " +str(self.id)
@@ -17,9 +17,9 @@ class Profile(models.Model):
     )
 
     name = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=10)
+    phoneNumber = models.CharField(max_length=10)
     address = models.CharField(max_length=250)
-    sex = models.CharField(max_length=10, choices=sex_choice)
+    sex = models.CharField(max_length=10, choices=sex_choice, default="male")
 
     def __str__(self):
         return self.name
