@@ -31,7 +31,6 @@ def test_create_contact_mutation(graphql_client):
 
 @pytest.mark.django_db
 def test_update_contact_mutation(graphql_client):
-    # Assuming you have a pre-existing contact in the database with some ID
     existing_contact = Contact.objects.create(name="Existing Contact", phoneNumber="9876543210")
 
     mutation = f'''
@@ -51,7 +50,6 @@ def test_update_contact_mutation(graphql_client):
 
 @pytest.mark.django_db
 def test_delete_contact_mutation(graphql_client):
-    # Assuming you have a pre-existing contact in the database with some ID
     existing_contact = Contact.objects.create(name="Existing Contact", phoneNumber="9876543210")
 
     mutation = f'''
@@ -70,7 +68,12 @@ def test_delete_contact_mutation(graphql_client):
 def test_create_profile_mutation(graphql_client):
     mutation = '''
     mutation {
-        createProfile(name: "John Doe", phoneNumber: "1234567890", address: "Test Address", sex: "male") {
+        createProfile(
+            name: "John Doe",
+            phoneNumber: "1234567890",
+            address: "Test Address", 
+            sex: "male"
+        ) {
             message
         }
     }
